@@ -191,7 +191,7 @@ function crawler(resolve, next, ctx) {
                                         chapterData.chapterTime = str.match(date)[0];
                                         count.push(chapterData.chapterTime)
                                     } else {
-                                        var str = $('#articinfo').text()
+                                        var str = $('#articinfo').text() || $("#th_content>h4").text();
                                         chapterData.chapterTime = str.match(date)[0];
                                         count.push(chapterData.chapterTime)
                                     }
