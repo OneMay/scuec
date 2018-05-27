@@ -7,7 +7,7 @@ var fs = require('fs');
 var file = './message.json';
 const app = new Koa();
 app.use(cors());
-setInterval(crawler, 50000)
+setInterval(crawler, 3000000);//5Сʱ
 router.get('/page', async(ctx, next) => {
     return new Promise(function(resolve, reject) {
         fs.readFile(file, 'utf8', function(err, data) {
