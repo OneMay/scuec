@@ -2,12 +2,19 @@ const Koa = require('koa');
 const router = require('koa-router')();
 const cors = require('koa2-cors');
 var http = require('http');
-var crawler = require('./crawler')
+var crawler = require('./crawler');
+var fs = require('fs');
+var file = './message.json';
 const app = new Koa();
 app.use(cors());
+setInterval(crawler, 50000)
 router.get('/page', async(ctx, next) => {
-    return new Promise(function(resolve, reject) { //关键啊，文档中居然没有 
-        crawler(resolve, next, ctx)
+    return new Promise(function(resolve, reject) {
+        fs.readFile(file, 'utf8', function(err, data) {
+            var page = JSON.parse(data.toString());
+            ctx.body = { message: page };
+            resolve(next())
+        });
 
     });
 }, function(ctx, next) {
