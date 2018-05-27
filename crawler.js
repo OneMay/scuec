@@ -5,9 +5,9 @@ var promise = require('bluebird'); //Promise 的主要作用就是用于封装�
 允许指定回调函数，在异步任务完成后调用。*/
 var cheerio = require('cheerio');
 var baseUrl = ['https://www.scuec.edu.cn/s/1/t/560/p/2/list.htm', 'https://www.scuec.edu.cn/s/329/t/1619/p/2/list.htm'];
+var fs = require('fs');
 
-
-function crawler(resolve, next, ctx) {
+function crawler() {
     function filterChapters(pageList) {
         var page = [];
         http.get(baseUrl[1], function(res) {
@@ -80,8 +80,12 @@ function crawler(resolve, next, ctx) {
                                 page.push(pageList)
                                 page.push(pageList2)
                                 page.push(pageList3)
-                                ctx.body = { message: page };
-                                resolve(next())
+                                var buf = new Buffer(page);
+                                fs.writeFile('./message.json', JSON.stringify(page), function(err) {
+                                    if (err) console.log('写文件操作失败');
+
+                                });
+
 
                             }
                         })
