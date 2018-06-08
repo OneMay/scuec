@@ -201,7 +201,7 @@ function crawler() {
                                     }
 
                                     pageList.list.push(chapterData);
-                                    if (count.length == 16) {
+                                    if (count.length == 15) {
 
                                         pageList.list.sort((a, b) => {
                                             if (a.chapterTime > b.chapterTime) {
