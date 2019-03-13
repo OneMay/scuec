@@ -9,10 +9,14 @@ const app = new Koa();
 app.use(cors());
 setInterval(crawler, 3000000);//5Сʱ
 router.get('/page', async(ctx, next) => {
+     const ip =   ctx.req.headers['x-forwarded-for'] ||
+           ctx.req.connection.remoteAddress ||
+           ctx.req.socket.remoteAddress ||
+           ctx.req.connection.socket.remoteAddress;
     return new Promise(function(resolve, reject) {
         fs.readFile(file, 'utf8', function(err, data) {
             var page = JSON.parse(data.toString());
-            ctx.body = { message: page };
+            ctx.body = { message: page ,ip:ip};
             resolve(next())
         });
 
