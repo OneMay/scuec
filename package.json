@@ -16,5 +16,9 @@
     "koa": "^2.5.1",
     "koa-router": "^7.4.0",
     "koa2-cors": "^2.0.5"
+  },
+  "dependencies": {
+    "forever": "^0.15.3",
+    "request-ip": "^2.1.3"
   }
 }

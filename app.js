@@ -9,7 +9,7 @@ const app = new Koa();
 app.use(cors());
 setInterval(crawler, 3000000);//5Сʱ
 router.get('/page', async(ctx, next) => {
-     const ip =   ctx.req.headers['x-forwarded-for'] ||
+     const ip = ctx.req.headers['x-forwarded-for'] || ctx.req.headers['x-real-ip'] ||
            ctx.req.connection.remoteAddress ||
            ctx.req.socket.remoteAddress ||
            ctx.req.connection.socket.remoteAddress;
