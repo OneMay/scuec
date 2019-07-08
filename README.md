@@ -1,1 +1,1 @@
-# scuec
+# scuec.git
